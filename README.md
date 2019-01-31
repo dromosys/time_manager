@@ -4,7 +4,7 @@ dev
  * Eclipose (pydev)
 
 setup
-sqlite3 db/db.sqlite3
-python3 manage.py makemigrations
+ 1. sqlite3 db/db.sqlite3
+ 1. python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py runserver
