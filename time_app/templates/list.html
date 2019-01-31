@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load mathfilters %}
+{% load widget_tweaks %}
+
+{% if user.is_authenticated %}
+<p>Welcome, {{ user.username }}. </p>
+<p><a href="/time/accounts/logout">Logout</a></p>
+
+<div class="container">
+<h1>Time Log</h1>
+
+<form method="get">
+    <div class="well">
+      <h4 style="margin-top: 0">Filter</h4>
+      <div class="row">
+        
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.year_joined.label_tag }}
+          {% render_field filter.form.year_joined class="form-control" %}
+        </div>
+        
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
+    </div>
+  </form>
+
+
+<table style="width:100%">
+{% for post in results %}
+
+<tr>
+<th><a href="{% url "time_app:edit" post.id %}">{{ post.id }}</a></th>
+<th>{{ post.date }}</th>
+<th>{{ post.name }}</th>		
+<th>Start: {{ post.start_time }}</th>
+<th>{{ post.end_time }}</th> 
+<th>{{ post.duration|floatformat:2 }}</th> 
+<th><a href="{% url "time_app:delete" post.id %}">Delete</a></th>
+</tr>
+      
+{% endfor %}
+
+</table>
+</ul>
+
+<a href="{% url "time_app:new" %}">New time entry</a>
+
+<p><p><b>Project Summary</b></p>
+<table style="width:100%">
+<tr>
+	<th>name</th>
+	<th>time (hrs)</th>
+</tr>
+	
+{% for item in sub_totals %}
+	<tr>
+		<th>{{ item.name }}</th>
+		<th>{{ item.hours_worked__sum|floatformat:2 }}</th>
+	</tr>
+{% endfor %}
+
+<tr>
+	<th>Total</th>
+	<th>{{total|floatformat:2}}</th>
+</tr>
+
+</table>
+
+</div>
+
+
+
+{% else %}
+<p>Welcome, new user. Please <a href="accounts/login">log in</a>.</p>
+
+<p><a href="accounts/register">Register</a></p>
+
+{% endif %}
+	
+{% endblock %}

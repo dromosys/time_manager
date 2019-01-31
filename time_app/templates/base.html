@@ -1,0 +1,66 @@
+<html>
+{% load pwa %}
+{% load static %}
+
+{% load tz %}
+{% localtime on %}
+
+<head>
+	{% progressive_web_app_meta %}
+	<title>Time</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+	
+	<link rel="stylesheet" type="text/css" href="/time/static/css-frames-style.css" />
+	
+</head>
+<body>
+	<div id="header-wrapper" class="wrapper">
+				
+		<div id="sidebar">
+		<ul>
+		  <li><a class="active" href="/time">Home</a></li>
+		  <li><a href="#contact">Contact</a></li>
+		  <li><a href="#about">About</a></li>
+		</ul>
+		</div>
+		
+		<div id="footerbar" class="footer bg-dark">
+		<p>&copy Time Manager 2018</p>
+		<ul>
+		  <li><a href="#home">Privacy policy</a></li>
+		  <li><a href="#news">Contact us</a></li>
+		  <li><a href="/time/set_timezone">Timezone</a></li>
+		</ul>
+		</div>
+		
+		<div style="padding:20px;margin-top:30px;height:1500px;" class="container">
+			<br><br><br>
+			{% block content %}
+
+			{% endblock %}
+			<div id="offlinedata">
+				<!-- the news will get displayed here from indexedDB in offline mode -->
+			</div>
+		<script type="text/javascript" src="{% static 'js/idb.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/idbop.js' %}"></script>
+		</div>
+		
+		<div id="footer-wrapper" class="footer bg-dark">
+			<p>&copy Time Manager 2018</p>
+			<a class="alink" href="/privacy">Privacy policy</a>&nbsp
+			<a class="alink" href="/contact">Contact us</a>
+			<a class="alink" href="/set_timezone">Timezone</a>
+		</div>
+	</div>
+
+{% endlocaltime %}
+</body>
+</html>
+

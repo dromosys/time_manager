@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+  <h1>Time Entry</h1>
+  <form  method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn btn-primary" type="submit" value="Submit" />
+  </form>
+</div>
+
+{% endblock %}
