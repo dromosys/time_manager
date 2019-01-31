@@ -1,7 +1,7 @@
 # time_manager
 
 dev
- * Eclipose (pydev)
+ * Eclipse (pydev)
 
 setup
  1. sqlite3 db/db.sqlite3
