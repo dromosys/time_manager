@@ -1,4 +1,4 @@
-# time manager
+# Time Manager
 
 # dev
  * Eclipse (pydev)
