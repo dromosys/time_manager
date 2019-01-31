@@ -1,9 +1,9 @@
 # time_manager
 
-dev
+# dev
  * Eclipse (pydev)
 
-setup
+# setup
  1. git clone https://github.com/dromosys/time_manager
  1. cd time_manager
  1. python3 manage.py makemigrations
@@ -12,6 +12,6 @@ setup
  1. python3 manage.py runserver
  1. sqlite3 db/db.sqlite3
  
- == login ==
+# login
   * http://localhost:8000/accounts/login/
   * http://localhost:8000/
