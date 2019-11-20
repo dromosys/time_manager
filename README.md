@@ -16,3 +16,20 @@
 # login
   * http://localhost:8000/accounts/login/
   * http://localhost:8000/
+  
+ # apache config
+
+<Directory /home/django/src>
+    <Files wsgi.py>
+        Require all granted
+    </Files>
+</Directory>
+
+WSGIDaemonProcess django python-path=/home/path/time_manager python-home=/home/path/venv
+WSGIProcessGroup django
+WSGIScriptAlias /time /home/path/time_manager/time_manager/wsgi.py process-group=django
+
+Alias /time/static/ /var/www/html/time_app/static/ 
+<Directory /var/www/html/time_app/static/>
+      Require all granted
+</Directory>
