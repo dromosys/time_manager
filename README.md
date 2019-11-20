@@ -18,7 +18,7 @@
   * http://localhost:8000/
   
  # apache config
-
+```
 <Directory /home/django/src>
     <Files wsgi.py>
         Require all granted
@@ -33,3 +33,4 @@ Alias /time/static/ /var/www/html/time_app/static/
 <Directory /var/www/html/time_app/static/>
       Require all granted
 </Directory>
+```
