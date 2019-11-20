@@ -19,7 +19,7 @@
   
  # apache config
 ```
-<Directory /home/path/src>
+<Directory /home/path/time_manager>
     <Files wsgi.py>
         Require all granted
     </Files>
