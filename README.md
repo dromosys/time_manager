@@ -19,7 +19,7 @@
   
  # apache config
 ```
-<Directory /home/django/src>
+<Directory /home/path/src>
     <Files wsgi.py>
         Require all granted
     </Files>
