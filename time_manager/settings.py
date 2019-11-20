@@ -12,21 +12,26 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'time_app/static/js', 'serviceworker.js')
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'time_app', 'serviceworker.js')
 
 PWA_APP_NAME = 'Time Manager'
-
+PWA_APP_SCOPE = '/time/static/js/'
+PWA_APP_START_URL = '/time'
+PWA_APP_JS_SCOPE = '/time/static/js'
 PWA_APP_ICONS =  [
     {
-        "src": "/static/icons-192.png",
+        "src": "/time/static/icons-192.png",
         "type": "image/png",
         "sizes": "192x192"
     },
     {
-        "src": "/static/icons-512.png",
+        "src": "/time/static/icons-512.png",
         "type": "image/png",
         "sizes": "512x512"
     }
@@ -40,10 +45,7 @@ PWA_APP_BACKGROUND_COLOR = '#fff'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ')196!4mk_bgn6zjsoe@23shjo3k0-0&ebt0dtzi!5o^ug_s#cp'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['www.dromosys.com','localhost']
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -65,6 +67,8 @@ INSTALLED_APPS = [
     #'crispy_forms',
     'bootstrap4',
     'widget_tweaks',
+    'rest_framework',
+    'django.contrib.humanize',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -153,7 +157,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/time/static/'
+#STATIC_URL = '/static/'
+
+STATIC_ROOT = '/var/www/html/time_app/static'
 
 LOGOUT_REDIRECT_URL = '/time/'
 
@@ -162,3 +169,11 @@ INTERNAL_IPS = ['127.0.0.1']
 #GEOIP_DATABASE = '/usr/local/share/GeoIP/GeoIP.dat'
 
 #TZ_DETECT_COUNTRIES = ('AU', 'CN', 'US', 'IN', 'JP', 'BR', 'RU', 'DE', 'FR', 'GB')
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+}

@@ -19,6 +19,12 @@
 	
 	<link rel="stylesheet" type="text/css" href="/time/static/css-frames-style.css" />
 	
+	<script>
+		this.online = window.navigator.onLine;
+        window.addEventListener('online', () => this.online = true);
+        window.addEventListener('offline', () => this.online = false);
+  	</script>
+	
 </head>
 <body>
 	<div id="header-wrapper" class="wrapper">
@@ -45,7 +51,7 @@
 			{% block content %}
 
 			{% endblock %}
-			<div id="offlinedata">
+			<div id="offlinedata" hidden="[online]">
 				<!-- the news will get displayed here from indexedDB in offline mode -->
 			</div>
 		<script type="text/javascript" src="{% static 'js/idb.js' %}"></script>

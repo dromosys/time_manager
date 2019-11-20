@@ -12,6 +12,10 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+    
+    http://localhost:8000/accounts/login/
+    http://localhost:8000/
+    
 """
 from django.conf.urls import include, url
 from django.contrib import admin
@@ -22,9 +26,7 @@ from django.contrib.auth.views import auth_logout, auth_login
 app_name = 'time_app'
 
 urlpatterns = [
-    #url(r'^admin/', admin.site.urls),
-    
-    #url(r'^$', views.index, name='home')
+
     url(r'^$', views.list, name='list'),
     url(r'^edit/(?P<pk>\d+)$', views.edit, name='edit'),
     url(r'^new$', views.create, name='new'),
@@ -32,12 +34,6 @@ urlpatterns = [
     url(r'^set_timezone$', views.set_timezone, name='set_timezone'),
     
     url(r'^accounts/register/', RegistrationView.as_view(success_url='/'), name='django_registration_register'),
-    
-    #url(r'^accounts/logout/$', auth_logout, {'next_page': '/'}, name='logout'),
-    #url(r'^accounts/login/$', auth_login, {'next_page': '/'}, name='login'),
-    #url('accounts/login/', auth_views.LoginView.as_view()),
-    #url(r'^accounts/logout/$',   auth_logout, {'template_name': 'logged_out.html'},  name='auth_logout'),
-    
     url(r'^accounts/', include('django_registration.backends.one_step.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     
@@ -45,5 +41,5 @@ urlpatterns = [
     url(r'getdata',views.getdata,name='getdata'),
     url('', include('pwa.urls')),
     
-    
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

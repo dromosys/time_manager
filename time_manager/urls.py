@@ -15,17 +15,30 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
+from rest_framework import routers, serializers, viewsets
+from time_app import views
 
 app_name = 'time'
 
-urlpatterns = [
-    #url(r'^admin/', admin.site.urls),
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'time', views.TimeViewSet)
 
-    url(r'^', include('time_app.urls',  namespace='time')),
+web_ctx = 'time/'
+#web_ctx = ''
+
+urlpatterns = [
+    url(r'^'+web_ctx+'admin/', admin.site.urls),
     
-    url(r'^tz_detect/', include('tz_detect.urls')),
+    url(r'^'+web_ctx+'api/', include(router.urls)),
+
+    url(web_ctx, include('time_app.urls',  namespace='time')),
+    
+    url(r'^'+web_ctx+'tz_detect/', include('tz_detect.urls')),
 ]
-from django.conf import settings
+
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [

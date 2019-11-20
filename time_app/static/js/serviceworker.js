@@ -4,9 +4,9 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(staticCacheName).then(function(cache) {
       return cache.addAll([
-        '/base_layout',
-        '/static/js/idb.js',
-        '/static/js/idbop.js'
+        '/time/',
+        '/time/static/js/idb.js',
+        '/time/static/js/idbop.js'
         
       ]);
     })

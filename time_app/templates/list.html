@@ -11,17 +11,12 @@
 <div class="container">
 <h1>Time Log</h1>
 
-<form method="get">
+<form method="post">
+    {% csrf_token %}
     <div class="well">
-      <h4 style="margin-top: 0">Filter</h4>
-      <div class="row">
-        
-        <div class="form-group col-sm-4 col-md-3">
-          {{ filter.form.year_joined.label_tag }}
-          {% render_field filter.form.year_joined class="form-control" %}
-        </div>
-        
-      </div>
+      <h4 style="margin-top: 0">Filter (days)</h4>
+      <input id="delta_days" type="text" name="delta_days" value="{{ delta_days }}">
+      
       <button type="submit" class="btn btn-primary">
         <span class="glyphicon glyphicon-search"></span> Search
       </button>
