@@ -5,6 +5,7 @@
 
 # setup
  1. git clone https://github.com/dromosys/time_manager
+ 1. pip install -r requirements.txt
  1. cd time_manager
  1. python3 manage.py makemigrations
  1. python3 manage.py migrate
