@@ -1,0 +1,44 @@
+{% block content %}
+{% load static %}
+
+<p><p><b>Summary</b></p>
+<table cellpadding="0" cellspacing="0" width="640" align="left" border="1">
+<tr>
+	<th>name</th>
+	<th>time (hrs)</th>
+</tr>
+	
+{% for item in sub_totals %}
+	<tr>
+		<th>{{ item.name }}</th>
+		<th>{{ item.hours_worked__sum|floatformat:2 }}</th>
+	</tr>
+{% endfor %}
+
+<tr>
+	<th>Total</th>
+	<th>{{total|floatformat:2}}</th>
+</tr>
+
+</table>
+
+
+<p><p><b>Time Sheet</b></p>
+<table cellpadding="0" cellspacing="0" width="640" align="left" border="1">
+{% for post in results %}
+
+<tr>
+<th><a href="{% url "time_app:edit" post.id %}">{{ post.id }}</a></th>
+<th>{{ post.date }}</th>
+<th>{{ post.name }}</th>		
+<th>Start: {{ post.start_time }}</th>
+<th>{{ post.end_time }}</th> 
+<th>{{ post.duration|floatformat:2 }}</th> 
+<th><a href="{% url "time_app:delete" post.id %}">Delete</a></th>
+</tr>
+      
+{% endfor %}
+
+</table>
+
+{% endblock %}
