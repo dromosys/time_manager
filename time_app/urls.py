@@ -18,10 +18,12 @@ Including another URLconf
     
 """
 from django.conf.urls import include, url
+from django.urls import path 
 from django.contrib import admin
 from time_app import views
 from django_registration.backends.one_step.views import RegistrationView
 from django.contrib.auth.views import auth_logout, auth_login
+from django.contrib.auth import views as auth_views 
 
 app_name = 'time_app'
 
@@ -32,10 +34,6 @@ urlpatterns = [
     url(r'^new$', views.create, name='new'),
     url(r'^delete/(?P<pk>\d+)$', views.delete, name='delete'),
     url(r'^set_timezone$', views.set_timezone, name='set_timezone'),
-    
-    url(r'^accounts/register/', RegistrationView.as_view(success_url='/'), name='django_registration_register'),
-    url(r'^accounts/', include('django_registration.backends.one_step.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
     
     url(r'base_layout',views.base_layout,name='base_layout'),
     url(r'getdata',views.getdata,name='getdata'),

@@ -23,7 +23,7 @@ def now_round_hour_min():
 # Create your models here.
 class time_entry(models.Model):
 
-    print("timezone.now",timezone.now)
+    #print("timezone.now",timezone.now)
     
     date = models.DateField(default=timezone.now)
     start_time =  models.TimeField(default=now_round_min)
