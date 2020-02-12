@@ -4,7 +4,7 @@ RUN apt-get update
 RUN apt-get install -y python3-pip python3-dev
 
 RUN cd /usr/local/bin && ln -s /usr/bin/python3 python
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip
 
 RUN apt-get install -y apt-utils vim curl apache2 apache2-utils
 RUN apt-get -y install apache2 libapache2-mod-wsgi-py3
