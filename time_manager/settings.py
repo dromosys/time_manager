@@ -64,11 +64,14 @@ INSTALLED_APPS = [
     'pwa',
     #'easy_timezones',
     #'tz_detect'
-    #'crispy_forms',
+    'crispy_forms',
     'bootstrap4',
     'widget_tweaks',
     'rest_framework',
     'django.contrib.humanize',
+    'django_celery_beat',
+    'django_extensions',
+    'accounts',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -177,3 +180,17 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated'
     ],
 }
+
+CELERY_BROKER_URL = 'rpc://localhost'
+
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+EMAIL_HOST = 'localhost'
+#EMAIL_HOST_USER = 'foo@bar.yourdomain.com'
+#EMAIL_HOST_PASSWORD = '********'
+EMAIL_PORT = 25
+
+DEFAULT_FROM_EMAIL = 'Test Team <admin@yourdomain.com>'
+
+#DEV ONLY!
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

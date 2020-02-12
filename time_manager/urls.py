@@ -26,17 +26,18 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'time', views.TimeViewSet)
 
-web_ctx = 'time/'
-#web_ctx = ''
-
 urlpatterns = [
-    url(r'^'+web_ctx+'admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
     
-    url(r'^'+web_ctx+'api/', include(router.urls)),
+    url(r'^api/', include(router.urls)),
 
-    url(web_ctx, include('time_app.urls',  namespace='time')),
+    url('', include('time_app.urls',  namespace='time')),
     
-    url(r'^'+web_ctx+'tz_detect/', include('tz_detect.urls')),
+    url('', include('accounts.urls',  namespace='accounts')),
+    
+    url(r'^accounts/', include('django.contrib.auth.urls',namespace='')),
+    
+    url(r'^tz_detect/', include('tz_detect.urls')),
 ]
 
 if settings.DEBUG:
