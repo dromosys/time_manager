@@ -13,11 +13,12 @@ ADD requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 ADD apache2.conf /etc/apache2/sites-available/000-default.conf
 ADD . /var/www/html
-RUN chmod 664 /var/www/html/db/db.sqlite3
-RUN chmod 775 /var/www/html/db
+
+RUN cd /var/www/html; python manage.py makemigrations; python manage.py migrate
 RUN chown :www-data -R /var/www/html/db/db.sqlite3
 RUN chown :www-data -R /var/www/html/db
-RUN cd /var/www/html; python manage.py makemigrations; python manage.py migrate
+RUN chmod 664 /var/www/html/db/db.sqlite3
+RUN chmod 775 /var/www/html/db
 
 EXPOSE 80
 CMD apachectl -D FOREGROUND
