@@ -1,0 +1,1 @@
+configure DATABASES in time_manager/settings.py
