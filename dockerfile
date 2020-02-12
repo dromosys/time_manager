@@ -11,11 +11,11 @@ RUN apt-get -y install apache2 libapache2-mod-wsgi-py3
 
 RUN pip install --upgrade pip
 RUN pip install djangorestframework
-ADD webapp/requirements.txt ./requirements.txt
+ADD requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 RUN pip install django
-ADD webapp/apache2.conf /etc/apache2/sites-available/000-default.conf
-ADD webapp /var/www/html
+ADD apache2.conf /etc/apache2/sites-available/000-default.conf
+ADD . /var/www/html
 RUN chmod 664 /var/www/html/db/db.sqlite3
 RUN chmod 775 /var/www/html/db
 RUN chown :www-data -R /var/www/html/db/db.sqlite3
