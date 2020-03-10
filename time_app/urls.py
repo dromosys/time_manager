@@ -24,6 +24,7 @@ from time_app import views
 from django_registration.backends.one_step.views import RegistrationView
 from django.contrib.auth.views import auth_logout, auth_login
 from django.contrib.auth import views as auth_views 
+from rest_framework.authtoken.views import obtain_auth_token
 
 app_name = 'time_app'
 
@@ -39,5 +40,7 @@ urlpatterns = [
     url(r'getdata',views.getdata,name='getdata'),
     url('', include('pwa.urls')),
     
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url('api-token-auth/', obtain_auth_token, name='api_token_auth'), 
+    
 ]
