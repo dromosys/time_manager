@@ -52,24 +52,34 @@ def email_report(name='mail_report'):
     users = User.objects.all()
     
     for u in users:
-        try:
+        #try:
+        #name = u.username
         
         recipient_list=[str(u.email)]
         
         log.info(recipient_list)
         
         context = get_report_message(u)
+        #log.info(context)
+        # construct email
+        #send_mail(name,message+" \n "+email,email,recipient_list,fail_silently=False)
         
         set_script_prefix(settings.SITE_URL)
         
         msg_html = render_to_string('email.html', context)
         
+        #log.info(msg_html)
+        #send_mail('email title',msg_html, 'admin@dromosys.com',[str(u.email)], html_message=msg_html)
+        
         message = 'test'
+        
+        #send_mail(subject, message, from_email, recipient_list) 
         
         send_mail(subject, message, from_email, recipient_list, html_message=msg_html) 
         
-        except:
-            log.error('error processing user_id:' + u.email) 
+    
+        #except:
+            #log.error('error processing user_id:' + u.email) 
            
 @app.on_after_finalize.connect
 def app_ready(**kwargs):
