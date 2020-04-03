@@ -27,5 +27,4 @@ sudo docker container prune
 
 ```
 # login
-  * http://localhost:8000/accounts/login/
-  * http://localhost:8000/
+  * http://localhost:8000/time/accounts/login/
