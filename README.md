@@ -18,11 +18,13 @@
 sudo docker build -t time_manager/time_manager:1.0.0 .
 sudo docker run -p 8000:80 -t time_manager/time_manager:1.0.0
 
-docker ps
-docker exec -it 0fead378ede5 /bin/bash
-docker stop ea8e0e9d8e43
+sudo docker ps -a
+sudo docker start 0fead378ede5
+sudo docker exec -it 0fead378ede5 /bin/bash
+sudo docker stop 0fead378ede5
+# delete stopped contains
+sudo docker container prune
 
 ```
 # login
-  * http://localhost:8000/accounts/login/
-  * http://localhost:8000/
+  * http://localhost:8000/time/accounts/login/
