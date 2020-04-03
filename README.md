@@ -22,6 +22,8 @@ sudo docker ps -a
 sudo docker start 0fead378ede5
 sudo docker exec -it 0fead378ede5 /bin/bash
 sudo docker stop 0fead378ede5
+# delete stopped contains
+sudo docker container prune
 
 ```
 # login
