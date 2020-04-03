@@ -14,9 +14,9 @@ RUN pip install -r requirements.txt
 ADD apache2.conf /etc/apache2/sites-available/000-default.conf
 ADD . /var/www/html
 
-RUN cd /var/www/html; python manage.py makemigrations; python manage.py migrate
+RUN cd /var/www/html; python manage.py makemigrations; python manage.py migrate; python manage.py collectstatic --no-input
 RUN chown :www-data -R /var/www/html/db/db.sqlite3
-RUN chown :www-data -R /var/www/html/db
+RUN chown :www-data -R /var/www/html/
 RUN chmod 664 /var/www/html/db/db.sqlite3
 RUN chmod 775 /var/www/html/db
 
