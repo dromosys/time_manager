@@ -29,7 +29,7 @@
 
 <tr>
 <th><a href="{% url "time_app:edit" post.id %}">{{ post.id }}</a></th>
-<th>{{ post.date }}</th>
+<th>{{ post.date|date:'l d N, Y' }}</th>
 <th>{{ post.name }}</th>		
 <th>Start: {{ post.start_time }}</th>
 <th>{{ post.end_time }}</th> 
