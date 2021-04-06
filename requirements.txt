@@ -3,7 +3,7 @@ django-bootstrap4==1.0.1
 django-csvimport==2.13
 django-debug-toolbar==2.1
 django-mathfilters==0.4.0
-django-registration==3.0.1
+django-registration==3.1.2
 django-tz-detect==0.2.10
 django-widget-tweaks==1.4.5
 djangorestframework==3.10.3
